@@ -1,0 +1,275 @@
+/* AboutUs.css with Modern Animations */
+
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:#eef3f8;
+}
+
+/* Main */
+.about-page{
+    padding:100px 7%;
+    animation:fadePage 1s ease;
+}
+
+.about-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+    align-items:start;
+}
+
+/* Cards */
+.about-card,
+.review-card{
+    background:white;
+    border-radius:28px;
+    padding:35px;
+    box-shadow:0 20px 45px rgba(0,0,0,0.08);
+    transition:0.4s ease;
+}
+
+/* Hover Lift */
+.about-card:hover,
+.review-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 30px 55px rgba(0,0,0,0.12);
+}
+
+/* Left Animation */
+.about-card{
+    animation:slideLeft 1s ease;
+}
+
+/* Right Animation */
+.review-card{
+    animation:slideRight 1s ease;
+}
+
+/* Title */
+.title-center{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.fancy-title{
+    display:inline-block;
+    font-size:78px;
+    font-family:serif;
+    font-weight:500;
+    background:#e8eef5;
+    padding:8px 28px;
+    color:#111;
+    animation:zoomIn 1s ease;
+}
+
+/* Text Box */
+.about-text-box{
+    background:#edf3fa;
+    padding:18px 20px;
+    margin-bottom:18px;
+    border-radius:12px;
+    transition:0.3s ease;
+}
+
+.about-text-box:hover{
+    transform:translateX(8px);
+    background:#e3edf8;
+}
+
+.about-text-box p{
+    margin:0;
+    font-size:18px;
+    line-height:1.8;
+    color:#333;
+}
+
+/* Right Side */
+.review-title{
+    font-size:54px;
+    font-family:serif;
+    font-weight:500;
+    margin-bottom:20px;
+    color:#111;
+}
+
+.rating-number{
+    font-size:78px;
+    font-weight:700;
+    margin:10px 0;
+    animation:pulse 2s infinite;
+}
+
+.stars{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.review-count{
+    font-size:20px;
+    margin-bottom:28px;
+    color:#555;
+}
+
+/* Rating Bars */
+.rating-bars{
+    margin-bottom:30px;
+}
+
+.rating-bars div{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+}
+
+.rating-bars span{
+    width:45px;
+    font-size:18px;
+}
+
+.bar{
+    flex:1;
+    height:14px;
+    background:#edf3fa;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:#111;
+    animation:fillBar 2s ease;
+}
+
+.fill-5{ width:80%; }
+.fill-4{ width:55%; }
+.fill-1{ width:8%; }
+
+/* Review Box */
+.single-review{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:16px;
+    border:1px solid #e9edf2;
+    transition:0.3s ease;
+}
+
+.single-review:hover{
+    transform:scale(1.02);
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+}
+
+.single-review h4{
+    margin:0 0 8px;
+    font-size:22px;
+}
+
+.single-review p{
+    margin:0;
+    color:#444;
+    line-height:1.7;
+}
+
+/* Keyframes */
+@keyframes fadePage{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes slideLeft{
+    from{
+        opacity:0;
+        transform:translateX(-70px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes slideRight{
+    from{
+        opacity:0;
+        transform:translateX(70px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes zoomIn{
+    from{
+        opacity:0;
+        transform:scale(0.8);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.06);
+    }
+}
+
+@keyframes fillBar{
+    from{
+        width:0;
+    }
+}
+
+/* Responsive */
+@media(max-width:992px){
+
+    .about-container{
+        grid-template-columns:1fr;
+    }
+
+    .fancy-title{
+        font-size:58px;
+    }
+
+    .review-title{
+        font-size:40px;
+    }
+}
+
+@media(max-width:576px){
+
+    .about-page{
+        padding:80px 20px;
+    }
+
+    .fancy-title{
+        font-size:42px;
+    }
+
+    .about-card,
+    .review-card{
+        padding:24px;
+    }
+
+    .about-text-box p{
+        font-size:16px;
+    }
+
+    .review-title{
+        font-size:30px;
+    }
+
+    .rating-number{
+        font-size:58px;
+    }
+}

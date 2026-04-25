@@ -1,0 +1,156 @@
+/* AuthPage.css */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:#f5f5f3;
+    color:#111;
+}
+
+/* Main Layout */
+.auth-section{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:70px;
+    padding:70px 8%;
+}
+
+/* Left Side */
+.auth-left{
+    opacity:0;
+    transform:translateX(-60px);
+    transition:1s ease;
+}
+
+.auth-left.is-visible{
+    opacity:1;
+    transform:translateX(0);
+}
+
+.auth-title{
+    font-size:82px;
+    font-family:serif;
+    font-weight:500;
+    line-height:1;
+    margin-bottom:20px;
+}
+
+.auth-subtitle{
+    font-size:22px;
+    line-height:1.8;
+    color:#444;
+    max-width:520px;
+    margin-bottom:38px;
+}
+
+/* Form */
+.auth-form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    max-width:430px;
+}
+
+.auth-form input{
+    padding:18px 20px;
+    border:1px solid #ddd;
+    border-radius:14px;
+    font-size:16px;
+    background:white;
+    outline:none;
+}
+
+.auth-form input:focus{
+    border-color:#111;
+}
+
+.auth-form button{
+    padding:18px;
+    border:none;
+    background:#111;
+    color:white;
+    border-radius:14px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.auth-form button:hover{
+    background:#3f69d8;
+}
+
+/* Bottom Link */
+.bottom-link{
+    margin-top:20px;
+}
+
+.bottom-link a{
+    color:#111;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* Right Side */
+.auth-right{
+    position:relative;
+    display:flex;
+    justify-content:center;
+}
+
+.main-auth-img{
+    width:520px;
+    height:700px;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+.floating-box{
+    position:absolute;
+    bottom:30px;
+    left:-30px;
+    background:white;
+    padding:24px;
+    border-radius:18px;
+    width:250px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* Responsive */
+@media(max-width:992px){
+
+    .auth-section{
+        grid-template-columns:1fr;
+        padding-top:120px;
+    }
+
+    .auth-title{
+        font-size:60px;
+    }
+
+    .main-auth-img{
+        width:100%;
+        max-width:430px;
+        height:560px;
+    }
+}
+
+@media(max-width:576px){
+
+    .auth-title{
+        font-size:44px;
+    }
+
+    .auth-subtitle{
+        font-size:17px;
+    }
+
+    .floating-box{
+        display:none;
+    }
+}
