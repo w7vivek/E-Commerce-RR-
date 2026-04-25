@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../../style/AdminProduct.css';
 
 const AdminProduct = () => {
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     const [productData, setProductData] = useState([]);
 
@@ -22,7 +23,7 @@ const AdminProduct = () => {
         try {
 
             const res = await axios.get(
-                'http://localhost:5000/productDetails'
+                `${API}/productDetails`
             );
 
             setProductData(res.data);
@@ -58,7 +59,7 @@ const AdminProduct = () => {
             };
 
             await axios.post(
-                'http://localhost:5000/addProduct',
+                ' `${API}/addProduct',
                 data
             );
 
@@ -98,7 +99,7 @@ const AdminProduct = () => {
             };
 
             await axios.put(
-                `http://localhost:5000/productData/${editId}`,
+                ` ${API}/productData/${editId}`,
                 data
             );
 
@@ -128,7 +129,7 @@ const AdminProduct = () => {
     };
 
     const handleDeleteData = (id) => {
-        axios.delete(`http://localhost:5000/adminDeleteProduct/${id}`)
+        axios.delete(` ${API}/adminDeleteProduct/${id}`)
         setProductData((prev) =>
             prev.filter(
                 (item) =>

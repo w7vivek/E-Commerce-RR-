@@ -4,6 +4,8 @@ import '../../style/AdminProduct.css';
 
 const AdminProduct = () => {
 
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
     const [productData, setProductData] = useState([]);
 
     const [formData, setFormData] = useState({
@@ -18,19 +20,12 @@ const AdminProduct = () => {
 
     /* Fetch Products */
     const fetchProducts = async () => {
-
         try {
-
-            const res = await axios.get(
-                'http://localhost:5000/productDetails'
-            );
-
+            const res = await axios.get(`${API}/productDetails`);
             setProductData(res.data);
-
         } catch (error) {
             console.log(error);
         }
-
     };
 
     useEffect(() => {
@@ -39,42 +34,32 @@ const AdminProduct = () => {
 
     /* Input Change */
     const handleChange = (e) => {
-
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
-
     };
 
     /* Add Product */
     const handleAddProduct = async () => {
-
         try {
-
             const data = {
                 ...formData,
                 image: `/images/${formData.image}`
             };
 
-            await axios.post(
-                'http://localhost:5000/addProduct',
-                data
-            );
+            await axios.post(`${API}/addProduct`, data);
 
             fetchProducts();
-
             resetForm();
 
         } catch (error) {
             console.log(error);
         }
-
     };
 
     /* Set Update Data */
     const handleEdit = (item) => {
-
         setEditId(item._id);
 
         setFormData({
@@ -84,37 +69,31 @@ const AdminProduct = () => {
             stock: item.stock,
             image: item.image.replace('/images/', '')
         });
-
     };
 
     /* Update Product */
     const handleUpdateProduct = async () => {
-
         try {
-
             const data = {
                 ...formData,
                 image: `/images/${formData.image}`
             };
 
             await axios.put(
-                `http://localhost:5000/productData/${editId}`,
+                `${API}/productData/${editId}`,
                 data
             );
 
             fetchProducts();
-
             resetForm();
 
         } catch (error) {
             console.log(error);
         }
-
     };
 
     /* Reset Form */
     const resetForm = () => {
-
         setFormData({
             name: "",
             category: "",
@@ -124,21 +103,25 @@ const AdminProduct = () => {
         });
 
         setEditId(null);
-
     };
 
-    const handleDeleteData = (id) => {
-        axios.delete(`http://localhost:5000/adminDeleteProduct/${id}`)
-        setProductData((prev) =>
-            prev.filter(
-                (item) =>
-                    (item._id || item.id) !== id
-            )
-        );
-    }
+    /* Delete Product */
+    const handleDeleteData = async (id) => {
+        try {
+            await axios.delete(`${API}/adminDeleteProduct/${id}`);
+
+            setProductData((prev) =>
+                prev.filter(
+                    (item) => (item._id || item.id) !== id
+                )
+            );
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
-
         <div className="home-page">
 
             <div className="title-center">
@@ -191,23 +174,19 @@ const AdminProduct = () => {
                 />
 
                 {editId ? (
-
                     <button
                         className="update-btn"
                         onClick={handleUpdateProduct}
                     >
                         Save Update
                     </button>
-
                 ) : (
-
                     <button
                         className="update-btn"
                         onClick={handleAddProduct}
                     >
                         Add Product
                     </button>
-
                 )}
 
             </div>
@@ -236,11 +215,8 @@ const AdminProduct = () => {
                         />
 
                         <h3>{item.name}</h3>
-
                         <p>₹ {item.price}</p>
-
                         <p>{item.category}</p>
-
                         <p>Stock : {item.stock}</p>
 
                         <button

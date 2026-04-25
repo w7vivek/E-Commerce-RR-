@@ -43,8 +43,8 @@ const NavBar = () => {
                 {/* Mobile Menu */}
                 <div className={menuOpen ? "mobile-menu active" : "mobile-menu"}>
 
-                    <Link to="/home" onClick={() => setMenuOpen(false)}>Home</Link>
-                    <Link to="/" onClick={() => setMenuOpen(false)}>Login</Link>
+                    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+                    <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
                     <Link to="/product" onClick={() => setMenuOpen(false)}>Products</Link>
                     <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
 

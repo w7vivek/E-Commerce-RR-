@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../style/Product.css';
 
 const Product_Page = () => {
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     const [productDetails, setProductDetails] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +16,7 @@ const Product_Page = () => {
         try {
             setLoading(true);
 
-            const res = await axios.get('http://localhost:5000/productDetails');
+            const res = await axios.get( `${API}/productDetails`);
 
             if (Array.isArray(res.data)) {
                 setProductDetails(res.data);

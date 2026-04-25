@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../../style/Product.css';
 
 const UserProduct = () => {
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     const [productDetails, setProductDetails] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +32,7 @@ const UserProduct = () => {
             setLoading(true);
 
             const res = await axios.get(
-                'http://localhost:5000/productDetails'
+                `${API}/productDetails`
             );
 
             if (Array.isArray(res.data)) {
@@ -113,7 +114,7 @@ const UserProduct = () => {
                 total:product.price * quantity
             };
 
-            await axios.post('http://localhost:5000/addUserproduct',item );
+            await axios.post( `${API}/addUserproduct`,item );
 
             alert("Added To Cart");
 

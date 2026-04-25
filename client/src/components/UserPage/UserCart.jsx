@@ -8,6 +8,7 @@ import { Link,useNavigate } from 'react-router-dom';
 import '../../style/Cart.css';
 
 const UserCart = () => {
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
     const navigate = useNavigate();
 
     const [cart, setCart] = useState([]);
@@ -30,7 +31,7 @@ const UserCart = () => {
         try {
 
             const res = await axios.get(
-                `http://localhost:5000/cart/${user.email}`
+                `${API}/cart/${user.email}`
             );
 
             if (Array.isArray(res.data)) {
@@ -64,9 +65,7 @@ const UserCart = () => {
 
             try {
 
-                await axios.delete(
-                    `http://localhost:5000/deleteProduct/${id}`
-                );
+                await axios.delete(`${API}/deleteProduct/${id}`);
 
                 const updateList =
                     cart.filter(
@@ -112,7 +111,7 @@ const UserCart = () => {
             try {
 
                 await axios.post(
-                    'http://localhost:5000/saveAddress',
+                     `${API}/saveAddress`,
                     {
                         email: user.email,
                         address: userData.address,

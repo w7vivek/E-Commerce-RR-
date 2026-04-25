@@ -5,6 +5,7 @@ import '../style/LoginPage.css';
 import sideImg from '../assets/auth-side.jpg';
 
 const LoginPage = () => {
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     const navigate = useNavigate();
 
@@ -36,7 +37,7 @@ const LoginPage = () => {
         try {
 
             const res = await axios.post(
-                'http://localhost:5000/auth',
+                 `${API}/auth`,
                 { email, password }
             );
 

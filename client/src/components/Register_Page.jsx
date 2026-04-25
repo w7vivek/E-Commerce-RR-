@@ -5,6 +5,9 @@ import '../style/LoginPage.css';
 import sideImg from '../assets/auth-side2.jpg';
 
 const Register_Page = () => {
+    const API =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:5000";
 
     const navigate = useNavigate();
 
@@ -48,7 +51,7 @@ const Register_Page = () => {
             setLoading(true);
 
             const res = await axios.post(
-                'http://localhost:5000/registerData',
+                 `${API}/registerData`,
                 formData
             );
 

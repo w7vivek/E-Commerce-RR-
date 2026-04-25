@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../../style/AdminDashboard.css';
 
 const AdminDashboard = () => {
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
     const [customerData, setCustomerData] = useState([]);
     const [cartData, setCartData] = useState([]);
@@ -14,11 +15,11 @@ const AdminDashboard = () => {
         try {
 
             const users = await axios.get(
-                'http://localhost:5000/buyList-customerData'
+                ` ${API}/buyList-customerData`
             );
 
             const carts = await axios.get(
-                'http://localhost:5000/allCartData'
+                 `${API}/allCartData`
             );
 
             setCustomerData(users.data);
