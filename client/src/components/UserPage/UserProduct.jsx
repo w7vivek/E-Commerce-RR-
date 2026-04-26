@@ -32,7 +32,7 @@ const UserProduct = () => {
             setLoading(true);
 
             const res = await axios.get(
-                 `${API}/productDetails`
+                `${API}/productDetails`
             );
 
             if (Array.isArray(res.data)) {

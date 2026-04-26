@@ -7,6 +7,8 @@ import Footer from '../Footer';
 
 const AdminNavBar = () => {
     const navigate = useNavigate();
+    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
 
     const [menuOpen, setMenuOpen] = useState(false);
     const user = JSON.parse(localStorage.getItem("user"))
@@ -39,8 +41,8 @@ const AdminNavBar = () => {
                         <Link to="/adminDashboard/AdminAbout">About</Link>
                         <Link to="/adminDashboard/AdminProduct">Products</Link>
                         {/* <Link to='/adminDashboard/UserCart'>Cart</Link> */}
+                        <button onClick={logout} className='nav-button'>LogOut</button>
                     </nav>
-                    <button onClick={logout} className='nav-button'>LogOut</button>
 
                     {/* Mobile Icon */}
                     <div
@@ -55,10 +57,10 @@ const AdminNavBar = () => {
                 {/* Mobile Menu */}
                 <div className={menuOpen ? "mobile-menu active" : "mobile-menu"}>
 
-                    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-                    <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
-                    <Link to="/product" onClick={() => setMenuOpen(false)}>Products</Link>
-                    <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+                    <Link to="/adminDashboard" onClick={() => setMenuOpen(false)}>Home</Link>
+                    <Link to="/adminDashboard/AdminProduct" onClick={() => setMenuOpen(false)}>Products</Link>
+                    <Link to="/adminDashboard/AdminAbout" onClick={() => setMenuOpen(false)}>About</Link>
+                    <button onClick={logout} className='nav-button'>LogOut</button>
 
                 </div>
 

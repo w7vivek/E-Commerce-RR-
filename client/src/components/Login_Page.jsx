@@ -50,7 +50,7 @@ const LoginPage = () => {
                 // sore username
                 localStorage.setItem("user", JSON.stringify(res.data.user));
 
-                navigate('/AdminDashBoard');
+                navigate('/adminDashBoard');
             }
             else {
 

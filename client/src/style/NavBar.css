@@ -1,222 +1,288 @@
-/* FIXED NAVBAR + MOBILE PRODUCT OVERLAP FIX */
+/* ===== FULL UPDATED NAVBAR + MOBILE FIX ===== */
 
-.navbar{
-    position:fixed;
-    top:15px;
-    left:50%;
-    transform:translateX(-50%);
-    width:94%;
-    z-index:1000;
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.nav-container{
-    background:rgba(255,255,255,0.78);
-    backdrop-filter:blur(14px);
-    border-radius:18px;
-    padding:14px 24px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+html,
+body {
+    overflow-x: hidden;
 }
 
-/* Logo */
-.logo-box{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:#111;
-    font-size:20px;
-    font-weight:600;
-}
+/* ================= NAVBAR ================= */
 
-.nav-logo{
-    width:40px;
-    height:40px;
-    border-radius:10px;
-    object-fit:cover;
-}
-
-/* Desktop Links */
-.nav-links{
-    display:flex;
-    gap:14px;
-}
-
-.nav-links a{
-    text-decoration:none;
-    color:#111;
-    padding:10px 16px;
-    border-radius:10px;
-    transition:0.3s ease;
-}
-
-.nav-links a:hover{
-    background:#d4a017;
-    color:white;
+.navbar {
+    position: sticky;
+    top: 10px;
+    width: 94%;
+    margin: 12px auto 0;
+    z-index: 9999;
 }
 
 
-/* Logout Button */
+.nav-button {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: #f0efe8;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 22px rgba(239, 68, 68, 0.28);
+    position: relative;
+    overflow: hidden;
+}
 
-.nav-button{
-    padding:12px 24px;
+/* Shine Effect */
+.nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.28),
+        transparent
+    );
+    transition: 0.5s;
+}
 
-    background:#ff0000;
-    color:#ffffff;
-
-    border:none;
-    border-radius:12px;
-
-    font-size:15px;
-    font-weight:600;
-    letter-spacing:0.5px;
-
-    cursor:pointer;
-    transition:0.3s ease;
-
-    box-shadow:0 10px 22px rgb(255, 0, 0);
+.nav-button:hover::before {
+    left: 130%;
 }
 
 /* Hover */
-
-.nav-button:hover{
-    background:#d4a017;
-    transform:translateY(-3px);
+.nav-button:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    border-color: #dc2626;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px rgba(220, 38, 38, 0.38);
 }
 
 /* Click */
-
-.nav-button:active{
-    transform:scale(0.96);
+.nav-button:active {
+    transform: scale(0.96);
+    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.25);
 }
 
 /* Focus */
-
-.nav-button:focus{
-    outline:none;
+.nav-button:focus {
+    outline: none;
     box-shadow:
-        0 0 0 4px rgba(212,160,23,0.18),
-        0 10px 22px rgba(0,0,0,0.12);
+        0 0 0 3px rgba(239, 68, 68, 0.2),
+        0 12px 22px rgba(239, 68, 68, 0.3);
 }
 
-/* Mobile */
+/* NAV BOX */
+.nav-container {
+    position: relative;
 
-@media(max-width:768px){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 
-    .nav-button{
-        width:100%;
-        padding:14px;
-        font-size:16px;
-        margin-top:10px;
-    }
+    padding: 14px 18px;
 
-}
-/* Menu Icon */
-.menu-icon{
-    display:none;
-    font-size:24px;
-    cursor:pointer;
-    color:#111;
-}
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
-/* Mobile Menu */
-.mobile-menu{
-    display:none;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 18px;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* IMPORTANT CONTENT PUSH DOWN */
-.page-main{
-    padding-top:105px;
+/* ================= LOGO ================= */
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-decoration: none;
+    color: #111;
+
+    flex: 1;
+    min-width: 0;
 }
 
-/* MOBILE */
-@media(max-width:768px){
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 
-    .navbar{
-        top:10px;
-        width:94%;
+.logo-box span {
+    font-size: 20px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ================= DESKTOP LINKS ================= */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #111;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: #d4a017;
+    color: #fff;
+}
+
+/* ================= MENU ICON ================= */
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    color: #111;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* ================= MOBILE MENU ================= */
+
+.mobile-menu {
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 12px;
+
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(16px);
+
+    border-radius: 18px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(-10px);
+    transition: 0.3s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #111;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    background: #f4f4f4;
+}
+
+/* ================= MAIN CONTENT ================= */
+
+main {
+    padding-top: 20px;
+}
+
+/* ================= TABLET / MOBILE ================= */
+
+@media(max-width:768px) {
+
+    .nav-links {
+        display: none;
     }
 
-    .nav-container{
-        padding:14px 18px;
+    .menu-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
     }
 
-    .nav-links{
-        display:none;
+    .nav-container {
+        padding: 12px 14px;
+        gap: 10px;
     }
 
-    .menu-icon{
-        display:block;
+    .nav-logo {
+        width: 34px;
+        height: 34px;
     }
 
-    .logo-box{
-        font-size:16px;
-        gap:8px;
+    .logo-box span {
+        font-size: clamp(14px, 4vw, 18px);
     }
 
-    .logo-box span{
-        font-size:16px;
-    }
-
-    .nav-logo{
-        width:34px;
-        height:34px;
-    }
-
-    .mobile-menu{
-        display:flex;
-        flex-direction:column;
-        background:white;
-        margin-top:10px;
-        border-radius:16px;
-        padding:10px;
-        box-shadow:0 15px 35px rgba(0,0,0,0.08);
-
-        opacity:0;
-        visibility:hidden;
-        transform:translateY(-10px);
-        transition:0.3s ease;
-    }
-
-    .mobile-menu.active{
-        opacity:1;
-        visibility:visible;
-        transform:translateY(0);
-    }
-
-    .mobile-menu a{
-        padding:14px;
-        text-decoration:none;
-        color:#111;
-        border-radius:10px;
-    }
-
-    .mobile-menu a:hover{
-        background:#f2f2f2;
-    }
-
-    /* MORE SPACE FOR MOBILE CONTENT */
-    .page-main{
-        padding-top:95px;
+    main {
+        padding-top: 16px;
     }
 }
 
-/* EXTRA SMALL */
-@media(max-width:480px){
+/* ================= SMALL MOBILE ================= */
 
-    .page-main{
-        padding-top:90px;
+@media(max-width:480px) {
+
+    .navbar {
+        top: 8px;
+        margin-top: 8px;
     }
 
-    .logo-box span{
-        font-size:15px;
+    .nav-container {
+        padding: 10px 12px;
     }
 
-    .menu-icon{
-        font-size:22px;
+    .nav-logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .logo-box span {
+        font-size: 13px;
+    }
+
+    .menu-icon {
+        font-size: 20px;
+        min-width: 32px;
+    }
+
+    main {
+        padding-top: 12px;
     }
 }

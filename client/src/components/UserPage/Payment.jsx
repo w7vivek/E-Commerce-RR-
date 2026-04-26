@@ -72,7 +72,7 @@ const Payment = () => {
                     <div className="payment-box">
 
                         <h3>
-                            UPI ID
+                            UPI ID 💲💸
                         </h3>
 
                         <p>
@@ -84,11 +84,23 @@ const Payment = () => {
                     <div className="payment-box">
 
                         <h3>
-                            Email Address
+                            Email Address📧
                         </h3>
 
                         <p>
                             rrstationery@gmail.com
+                        </p>
+
+                    </div>
+
+                    <div className="payment-box">
+
+                        <h3>
+                            WhatApp 
+                        </h3>
+
+                        <p>
+                            +91 97232 38047
                         </p>
 
                     </div>

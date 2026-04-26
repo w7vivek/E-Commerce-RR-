@@ -31,7 +31,7 @@ const UserCart = () => {
         try {
 
             const res = await axios.get(
-                `${API}/cart/${user.email}`
+                ` ${API}/cart/${user.email}`
             );
 
             if (Array.isArray(res.data)) {
@@ -65,7 +65,9 @@ const UserCart = () => {
 
             try {
 
-                await axios.delete(`${API}/deleteProduct/${id}`);
+                await axios.delete(
+                    ` ${API}/deleteProduct/${id}`
+                );
 
                 const updateList =
                     cart.filter(
@@ -105,31 +107,33 @@ const UserCart = () => {
         0
     );
 
-    const handleCheckout =
-        async () => {
+   const handleCheckout = async () => {
 
-            try {
+    try {
 
-                await axios.post(
-                     `${API}/saveAddress`,
-                    {
-                        email: user.email,
-                        address: userData.address,
-                        phone: userData.phone
-                    }
-                );
+        await axios.post(
 
-                navigate('/UserDashboard/Payment');
+            `${API}/saveAddress`,
 
-                
-
-            } catch (error) {
-
-                console.log(error);
-
+            {
+                email: user.email,
+                address: userData.address,
+                phone: userData.phone
             }
 
-        };
+        );
+
+        navigate(
+            '/UserDashboard/Payment'
+        );
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+};
 
     return (
 

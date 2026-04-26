@@ -39,8 +39,8 @@ const UserNavBar = () => {
                         <Link to="/UserDashboard/UserAbout">About</Link>
                         <Link to="/UserDashboard/UserProduct">Products</Link>
                         <Link to='/UserDashboard/UserCart'>Cart</Link>
+                        <button onClick={logout} className='nav-button'>LogOut</button>
                     </nav>
-                    <button onClick={logout} className='nav-button'>LogOut</button>
 
                     {/* Mobile Icon */}
                     <div
@@ -55,11 +55,11 @@ const UserNavBar = () => {
                 {/* Mobile Menu */}
                 <div className={menuOpen ? "mobile-menu active" : "mobile-menu"}>
 
-                    <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-                    <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
-                    <Link to="/product" onClick={() => setMenuOpen(false)}>Products</Link>
-                    <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-
+                    <Link to="/UserDashboard" onClick={() => setMenuOpen(false)}>Home</Link>
+                    <Link to="/UserDashboard/UserProduct" onClick={() => setMenuOpen(false)}>Products</Link>
+                    <Link to="/UserDashboard/UserAbout" onClick={() => setMenuOpen(false)}>About</Link>
+                    <Link to='/UserDashboard/UserCart' onClick={() => setMenuOpen(false)}>Cart</Link>
+                    <button onClick={logout} className='nav-button'>LogOut</button>
                 </div>
 
             </header>

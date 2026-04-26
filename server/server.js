@@ -1,11 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const fs = require("fs");
 
 const User = require('./model/UserData.js');
 const Products = require('./model/ProductData.js');
 const Cart = require('./model/UserBuyList.js');
 const UserAddress = require('./model/PaymentDetails.js');
+
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
 
 require('dotenv').config();
 const app = express();
@@ -123,6 +127,8 @@ app.get('/userData', async (req, res) => {
 /* =========================
    GET PRODUCTS
 ========================= */
+
+
 app.get('/productDetails', async (req, res) => {
 
     try {
@@ -144,18 +150,36 @@ app.get('/productDetails', async (req, res) => {
 /* =========================
    ADD PRODUCT
 ========================= */
-app.post('/addProduct', async (req, res) => {
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+});
+
+const upload = multer({ dest: "uploads/" });
+
+app.post('/addProduct', upload.single("image"), async (req, res) => {
 
     try {
 
-        const data = await Products.create(req.body);
+        const result = await cloudinary.uploader.upload(req.file.path);
+
+        const data = await Products.create({
+            name: req.body.name,
+            category: req.body.category,
+            price: req.body.price,
+            stock: req.body.stock,
+            image: result.secure_url
+        });
 
         res.status(201).json(data);
 
     } catch (error) {
 
+        console.log(error);
+
         res.status(500).json({
-            message: "Product Add Failed"
+            message: error.message
         });
 
     }
@@ -189,20 +213,45 @@ app.delete('/adminDeleteProduct/:id', async (req, res) => {
 /* =========================
    UPDATE PRODUCT
 ========================= */
-app.put('/productData/:id', async (req, res) => {
+app.put('/productData/:id', upload.single("image"), async (req, res) => {
 
     try {
 
+        let imageUrl = req.body.existingImageUrl;
+
+        /* If new image selected */
+        if (req.file) {
+
+            const result =
+                await cloudinary.uploader.upload(
+                    req.file.path
+                );
+
+            imageUrl = result.secure_url;
+        }
+
         const data =
             await Products.findByIdAndUpdate(
+
                 req.params.id,
-                req.body,
+
+                {
+                    name: req.body.name,
+                    category: req.body.category,
+                    price: req.body.price,
+                    stock: req.body.stock,
+                    image: imageUrl
+                },
+
                 { new: true }
+
             );
 
         res.status(200).json(data);
 
     } catch (error) {
+
+        console.log("Update error:", error);
 
         res.status(500).json({
             message: "Update Failed"
@@ -313,7 +362,11 @@ app.get('/buyList-customerData', async (req, res) => {
 
         const data = await User.find();
 
-        res.status(200).json(data);
+        const filteredData = data.filter(
+            (user) => user.email !== "admin@workforce.com"
+        );
+
+        res.status(200).json(filteredData);
 
     } catch (error) {
 
